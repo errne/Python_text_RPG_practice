@@ -16,3 +16,34 @@ class PlayerTests(unittest.TestCase):
     def test_can_lose_health(self):
         self.player.lose_health(15)
         self.assertEqual(85, self.player.health)
+
+    def test_has_3_health_potions_at_start(self):
+        self.assertEqual(3, self.player.numHealthPots)
+
+    def test_health_pots_heal(self):
+        for _ in range(3):
+            self.player.lose_health(15)
+        self.player.drink_health_potion()
+        self.assertEqual(85, self.player.health)
+
+    def test_health_pots_not_heal_when_0(self):
+        for _ in range(3):
+            self.player.drink_health_potion()
+        self.player.lose_health(15)
+        self.player.drink_health_potion()
+        self.assertEqual(85, self.player.health)
+        self.assertEqual(0, self.player.numHealthPots)
+
+    def test_can_deal_damage(self):
+        self.assertEqual(True, self.player.deal_damage() > 4)
+
+    def test_can_receive_damage(self):
+        self.player.take_damage(25)
+        self.assertEqual(75, self.player.health)
+
+    def test_drink_attack_potion(self):
+        self.player.numAttackPots += 1
+        self.player.drink_attack_potion()
+        self.assertEqual(50, self.player.maxAttackDmg)
+
+
