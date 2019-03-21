@@ -15,8 +15,8 @@ class Enemy:
         self.type = self.types[self.randomForType]
         self.name = self.allNames[self.randomForType][self.randomForName]
         self.hp = random.randint(10, self.maxHP)
-
-        self.attackDamage = random.randint(3, 25)
+        self.maxAttackDamage = 25
+        # self.attackDamage = random.randint(3, 25)
         self.armour = self.pick_armour_level()
 
     def hp_count(self):
@@ -29,6 +29,12 @@ class Enemy:
             return 15
         else:
             return 3
+
+    def deal_damage_to_player(self):
+        return random.randint(3, self.maxAttackDamage)
+
+    def receive_damage(self, received_damage):
+        self.hp -= received_damage
 
     def to_string(self):
         return "You meet a " + self.name + " who has " + str(self.hp) + " hp and wants to fight you"
