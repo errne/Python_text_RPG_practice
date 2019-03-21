@@ -1,21 +1,24 @@
 import random
+
+import self as self
+
 from Enemy import *
 from Player import *
+from Game import *
+from Battle import *
 
 
 
+game = Game()
 
-def displayIntro():
-    print("Hello there, what is your name?\n")
-    player_name = input().capitalize()
-    print(player_name + " your adventure starts here")
-    print("Welcome to the dungeon!")
+game.display_intro()
+player = game.create_player(game.player_name)
 
-
-gameIsOn = True
-
-displayIntro()
+# player = Player(player_name)
 enemy = Enemy()
 
-
 print(enemy.to_string())
+print(player.name, player.health)
+
+battle = Battle(player, enemy)
+battle.fight()
