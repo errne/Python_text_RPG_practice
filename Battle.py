@@ -1,10 +1,16 @@
+import random
+
+
 class Battle:
 
     def __init__(self, player, enemy):
         self.player = player
         self.enemy = enemy
+        self.healthPotionDropChance = 95
+        self.attackPotionDropChance = 25
 
     def fight(self):
+
         while self.enemy.hp > 0:
             print("\tYour HP: " + str(self.player.health))
             print("\t" + self.enemy.name + "'s HP: " + str(self.enemy.hp))
@@ -36,6 +42,21 @@ class Battle:
 
             elif player_input == "3":
                 print("\t> You run away from the " + self.enemy.name)
+                return
 
             else:
                 print("\tInvalid command")
+        print(" # " + self.enemy.name + " was defeated! # ")
+        print((" # You have " + str(self.player.health) + "HP left # "))
+        self.loot_drop()
+
+    def loot_drop(self):
+        if random.randint(1, 100) < self.healthPotionDropChance:
+            print(" # The " + self.enemy.name + " dropped a health potion. # ")
+            self.player.numHealthPots += 1
+            print(" # You now have " + str(self.player.numHealthPots) + " health potion(s). # ")
+
+        if random.randint(1, 100) < self.attackPotionDropChance:
+            print(" # The " + self.enemy.name + " dropped a attack potion. # ")
+            print(" # You now have " + str(self.playernumAttPots) + " attack potion(s). # ")
+            self.player.numAttackPots += 1
