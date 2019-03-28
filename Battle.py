@@ -58,5 +58,5 @@ class Battle:
 
         if random.randint(1, 100) < self.attackPotionDropChance:
             print(" # The " + self.enemy.name + " dropped a attack potion. # ")
-            print(" # You now have " + str(self.playernumAttPots) + " attack potion(s). # ")
+            print(" # You now have " + str(self.player.numAttackPots) + " attack potion(s). # ")
             self.player.numAttackPots += 1

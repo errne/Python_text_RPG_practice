@@ -46,4 +46,11 @@ class PlayerTests(unittest.TestCase):
         self.player.drink_attack_potion()
         self.assertEqual(50, self.player.maxAttackDmg)
 
+    def test_player_starts_with_0_gold(self):
+        self.assertEqual(0, self.player.goldPouch)
+
+    def test_can_add_gold(self):
+        self.player.add_gold_to_pouch(25)
+        self.assertEqual(25, self.player.goldPouch)
+
 

@@ -10,6 +10,7 @@ class Player:
     attackPotionDropChance = 20
     healthPotionHealAmount = 30
     healthPotionDropChance = 40
+    goldPouch = 0
 
     def __init__(self, name):
         self.name = name
@@ -51,3 +52,8 @@ class Player:
 
     def take_damage(self, damage_received):
         self.health -= damage_received
+
+    def add_gold_to_pouch(self, amount_of_gold):
+        self.goldPouch += amount_of_gold
+
+
