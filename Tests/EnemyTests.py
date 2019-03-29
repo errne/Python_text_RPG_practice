@@ -29,3 +29,8 @@ class EnemyTests(unittest.TestCase):
         current_health = self.enemy.hp_count()
         self.enemy.receive_damage(10)
         self.assertEqual(current_health-10, self.enemy.hp_count())
+
+    def test_can_die(self):
+        self.enemy.receive_damage(100)
+        self.assertEqual(False, self.enemy.isAlive)
+

@@ -11,12 +11,10 @@ class Player:
     healthPotionHealAmount = 30
     healthPotionDropChance = 40
     goldPouch = 0
+    isAlive = True
 
     def __init__(self, name):
         self.name = name
-
-    def lose_health(self, damage_received):
-        self.health -= damage_received
 
     def drink_health_potion(self):
         if self.numHealthPots > 0:
@@ -52,6 +50,9 @@ class Player:
 
     def take_damage(self, damage_received):
         self.health -= damage_received
+        if self.health < 1:
+            self.isAlive = False
+            self.health = 0
 
     def add_gold_to_pouch(self, amount_of_gold):
         self.goldPouch += amount_of_gold

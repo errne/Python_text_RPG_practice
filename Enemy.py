@@ -3,6 +3,7 @@ import random
 
 class Enemy:
     maxHP = 75
+    isAlive = True
     types = ["Undead", "Humanoid", "Animal"]
     namesForUndead = ["Zombie", "Vampire", "Forsaken", "Skeleton"]
     namesForAnimals = ["Cave Bear", "Cave Wolf", "Lizard", "Giant Bat"]
@@ -35,6 +36,9 @@ class Enemy:
 
     def receive_damage(self, received_damage):
         self.hp -= received_damage
+        if self.hp < 1:
+            self.isAlive = False
+            self.hp = 0
 
     def to_string(self):
         return "You meet a " + self.name + " who has " + str(self.hp) + " hp and wants to fight you"

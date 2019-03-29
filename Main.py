@@ -20,9 +20,13 @@ player = game.create_player(game.player_name)
 #
 # print(enemy.to_string())
 # print(player.name, player.health)
-
+#
 # battle = Battle(player, enemy)
 # battle.fight()
+
+room = Room(player)
+room.generate_enemies()
+room.room_fights()
 
 room = Room(player)
 room.generate_enemies()

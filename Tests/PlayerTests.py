@@ -13,9 +13,9 @@ class PlayerTests(unittest.TestCase):
     def test_starting_health(self):
         self.assertEqual(100, self.player.health)
 
-    def test_can_lose_health(self):
-        self.player.lose_health(15)
-        self.assertEqual(85, self.player.health)
+    # def test_can_lose_health(self):
+    #     self.player.lose_health(15)
+    #     self.assertEqual(85, self.player.health)
 
     def test_has_3_health_potions_at_start(self):
         self.assertEqual(3, self.player.numHealthPots)
@@ -52,5 +52,10 @@ class PlayerTests(unittest.TestCase):
     def test_can_add_gold(self):
         self.player.add_gold_to_pouch(25)
         self.assertEqual(25, self.player.goldPouch)
+
+    def test_player_dies(self):
+        self.player.take_damage(125)
+        self.assertEqual(False, self.player.isAlive)
+
 
 
