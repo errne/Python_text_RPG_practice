@@ -17,7 +17,7 @@ class EnemyTests(unittest.TestCase):
         self.assertEqual(True, len(self.enemy.type) > 5)
 
     def test_random(self):
-        self.assertEqual(True, self.enemy.randomForType < 3)
+        self.assertEqual(True, self.enemy.random_for_type < 3)
 
     def test_attack_damage(self):
         self.assertEqual(True, self.enemy.deal_damage_to_player() >= 3 & self.enemy.deal_damage_to_player() < 26)
@@ -32,5 +32,5 @@ class EnemyTests(unittest.TestCase):
 
     def test_can_die(self):
         self.enemy.receive_damage(100)
-        self.assertEqual(False, self.enemy.isAlive)
+        self.assertEqual(False, self.enemy.is_alive)
 

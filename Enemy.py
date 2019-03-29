@@ -2,21 +2,21 @@ import random
 
 
 class Enemy:
-    maxHP = 75
-    isAlive = True
+    max_hp = 75
+    is_alive = True
     types = ["Undead", "Humanoid", "Animal"]
-    namesForUndead = ["Zombie", "Vampire", "Forsaken", "Skeleton"]
-    namesForAnimals = ["Cave Bear", "Cave Wolf", "Lizard", "Giant Bat"]
-    namesForHumanoids = ["Warrior", "Bandit", "Warlock", "Assassin"]
-    allNames = [namesForUndead, namesForHumanoids, namesForAnimals]
+    names_for_undead = ["Zombie", "Vampire", "Forsaken", "Skeleton"]
+    names_for_animals = ["Cave Bear", "Cave Wolf", "Lizard", "Giant Bat"]
+    names_for_humanoids = ["Warrior", "Bandit", "Warlock", "Assassin"]
+    all_names = [names_for_undead, names_for_humanoids, names_for_animals]
 
     def __init__(self):
-        self.randomForType = random.randint(0, len(self.types) - 1)
-        self.randomForName = random.randint(0, 3)
-        self.type = self.types[self.randomForType]
-        self.name = self.allNames[self.randomForType][self.randomForName]
-        self.hp = random.randint(10, self.maxHP)
-        self.maxAttackDamage = 25
+        self.random_for_type = random.randint(0, len(self.types) - 1)
+        self.random_for_name = random.randint(0, 3)
+        self.type = self.types[self.random_for_type]
+        self.name = self.all_names[self.random_for_type][self.random_for_name]
+        self.hp = random.randint(10, self.max_hp)
+        self.max_attack_damage = 25
         # self.attackDamage = random.randint(3, 25)
         self.armour = self.pick_armour_level()
 
@@ -24,20 +24,20 @@ class Enemy:
         return self.hp
 
     def pick_armour_level(self):
-        if self.randomForType == 0:
+        if self.random_for_type == 0:
             return 5
-        elif self.randomForType == 1:
+        elif self.random_for_type == 1:
             return 15
         else:
             return 3
 
     def deal_damage_to_player(self):
-        return random.randint(3, self.maxAttackDamage)
+        return random.randint(3, self.max_attack_damage)
 
     def receive_damage(self, received_damage):
         self.hp -= received_damage
         if self.hp < 1:
-            self.isAlive = False
+            self.is_alive = False
             self.hp = 0
 
     def to_string(self):
