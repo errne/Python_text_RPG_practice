@@ -3,58 +3,54 @@ import random
 
 class Player:
     health = 100
-    maxAttackDmg = 45
-    numHealthPots = 3
-    numAttackPots = 0
-    attackPotionBoost = 5
-    attackPotionDropChance = 20
-    healthPotionHealAmount = 30
-    healthPotionDropChance = 40
-    goldPouch = 0
-    isAlive = True
+    max_attack_damage = 45
+    num_health_pots = 3
+    num_attack_pots = 0
+    gold_pouch = 0
+    is_alive = True
 
     def __init__(self, name):
         self.name = name
 
     def drink_health_potion(self):
-        if self.numHealthPots > 0:
+        if self.num_health_pots > 0:
             self.health_potion_heal()
-            self.numHealthPots -= 1
-            if self.numHealthPots <= 0:
-                self.numHealthPots = 0
+            self.num_health_pots -= 1
+            if self.num_health_pots <= 0:
+                self.num_health_pots = 0
         else:
             print("\t> You do not have any health potions, defeat enemies for a chance to get one")
 
     def health_potion_heal(self):
-        self.health += self.healthPotionHealAmount
+        self.health += 30
         if self.health > 100:
             self.health = 100
 
     def drink_attack_potion(self):
-        if self.numAttackPots > 0:
+        if self.num_attack_pots > 0:
             self.attack_potion_boost()
-            self.numAttackPots -= 1
-            if self.numAttackPots <= 0:
-                self.numAttackPots = 0
+            self.num_attack_pots -= 1
+            if self.num_attack_pots <= 0:
+                self.num_attack_pots = 0
         else:
             print("\t> You do not have any attack potions, defeat enemies for a chance to get one")
 
     def attack_potion_boost(self):
-        self.maxAttackDmg += self.attackPotionBoost
-        if self.maxAttackDmg > 75:
+        self.max_attack_damage += 5
+        if self.max_attack_damage > 75:
             self.health = 75
             print("Your maximum damage cannot go any higher")
 
     def deal_damage(self):
-        return random.randint(5, self.maxAttackDmg)
+        return random.randint(5, self.max_attack_damage)
 
     def take_damage(self, damage_received):
         self.health -= damage_received
         if self.health < 1:
-            self.isAlive = False
+            self.is_alive = False
             self.health = 0
 
     def add_gold_to_pouch(self, amount_of_gold):
-        self.goldPouch += amount_of_gold
+        self.gold_pouch += amount_of_gold
 
 
