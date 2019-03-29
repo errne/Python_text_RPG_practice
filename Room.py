@@ -25,10 +25,10 @@ class Room:
         self.treasure_chest += amount_to_add
 
     def loot_treasure_chest(self):
-        if self.player.isAlive:
+        if self.player.is_alive:
             self.player.add_gold_to_pouch(self.treasure_chest)
             print("# You found " + str(self.treasure_chest) + " gold in treasure chest. #")
-            print("# Now you have " + str(self.player.goldPouch) + " gold in your pouch. #")
+            print("# Now you have " + str(self.player.gold_pouch) + " gold in your pouch. #")
             self.treasure_chest = 0
 
     def room_fights(self):
@@ -36,7 +36,7 @@ class Room:
                 print(enemy.to_string())
                 battle = Battle(self.player, enemy)
                 battle.fight()
-                if not self.player.isAlive:
+                if not self.player.is_alive:
                     break
                 if enemy.hp < 1:
                     self.add_gold_to_treasure_chest()

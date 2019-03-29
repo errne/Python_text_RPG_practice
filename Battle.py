@@ -6,13 +6,13 @@ class Battle:
     def __init__(self, player, enemy):
         self.player = player
         self.enemy = enemy
-        self.battleIsOn = True
-        self.healthPotionDropChance = 95
-        self.attackPotionDropChance = 25
+        self.battle_is_on = True
+        self.health_potion_drop_chance = 95
+        self.attack_potion_drop_chance = 25
 
     def fight(self):
 
-        while self.battleIsOn:
+        while self.battle_is_on:
             print("\tYour HP: " + str(self.player.health))
             print("\t" + self.enemy.name + "'s HP: " + str(self.enemy.hp))
             print("\n\tWhat would you like to do?")
@@ -26,13 +26,12 @@ class Battle:
 
             elif player_input == "2":
                 self.player.drink_health_potion()
-                print("\t> You drank a health potion, healed for: " + str(self.player.healthPotionHealAmount) + "."
-                      + "\n\t> You now have" + str(self.player.health) + " HP." + "\n\t> You now have " +
-                      str(self.player.numHealthPots) + " health potions left.\n")
+                print("\t> You now have" + str(self.player.health) + " HP." + "\n\t> You now have " +
+                      str(self.player.num_health_pots) + " health potions left.\n")
 
             elif player_input == "3":
                 print("\t> You run away from the " + self.enemy.name)
-                self.battleIsOn = False
+                self.battle_is_on = False
                 return
 
             else:
@@ -41,15 +40,15 @@ class Battle:
         self.aftermath()
 
     def loot_drop(self):
-        if random.randint(1, 100) < self.healthPotionDropChance:
+        if random.randint(1, 100) < self.health_potion_drop_chance:
             print(" # The " + self.enemy.name + " dropped a health potion. # ")
-            self.player.numHealthPots += 1
-            print(" # You now have " + str(self.player.numHealthPots) + " health potion(s). # ")
+            self.player.num_health_pots += 1
+            print(" # You now have " + str(self.player.num_health_pots) + " health potion(s). # ")
 
-        if random.randint(1, 100) < self.attackPotionDropChance:
+        if random.randint(1, 100) < self.attack_potion_drop_chance:
             print(" # The " + self.enemy.name + " dropped a attack potion. # ")
-            self.player.numAttackPots += 1
-            print(" # You now have " + str(self.player.numAttackPots) + " attack potion(s). # ")
+            self.player.num_attack_pots += 1
+            print(" # You now have " + str(self.player.num_attack_pots) + " attack potion(s). # ")
 
     def attack_choice(self):
         damage_calculation = self.player.deal_damage() - self.enemy.armour
@@ -61,12 +60,12 @@ class Battle:
         print("\t> You strike the " + self.enemy.name + " for " + str(damage_dealt) + " damage")
         print("\t> You received " + str(damage_taken) + " in retaliation")
 
-        if not self.player.isAlive:
+        if not self.player.is_alive:
             print("\t You have taken too much damage, you are too weak to go on")
-            self.battleIsOn = False
+            self.battle_is_on = False
 
-        if not self.enemy.isAlive:
-            self.battleIsOn = False
+        if not self.enemy.is_alive:
+            self.battle_is_on = False
 
     def aftermath(self):
         if self.player.health < 1:
