@@ -1,9 +1,12 @@
 import random
+from Weapon import *
+from MaterialTypes import *
+from WeaponTypes import *
 
 
 class Player:
     health = 100
-    max_attack_damage = 45
+    base_attack_damage = 10
     num_health_pots = 3
     num_attack_pots = 0
     gold_pouch = 0
@@ -11,6 +14,11 @@ class Player:
 
     def __init__(self, name):
         self.name = name
+        self.weapon = Weapon(MaterialTypes.WOOD, WeaponTypes.SWORD)
+        self.max_attack_damage = self.base_attack_damage + self.weapon.max_damage
+
+    def set_max_attack_damage(self):
+        self.max_attack_damage = self.base_attack_damage + self.weapon.max_damage
 
     def drink_health_potion(self):
         if self.num_health_pots > 0:
@@ -36,10 +44,11 @@ class Player:
             print("\t> You do not have any attack potions, defeat enemies for a chance to get one")
 
     def attack_potion_boost(self):
-        self.max_attack_damage += 5
-        if self.max_attack_damage > 75:
-            self.health = 75
+        self.base_attack_damage += 5
+        if self.base_attack_damage > 45:
+            self.base_attack_damage = 45
             print("Your maximum damage cannot go any higher")
+        self.set_max_attack_damage()
 
     def deal_damage(self):
         return random.randint(5, self.max_attack_damage)
