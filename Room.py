@@ -32,15 +32,43 @@ class Room:
             self.treasure_chest = 0
 
     def room_fights(self):
-            for enemy in self.enemies:
-                print(enemy.to_string())
-                battle = Battle(self.player, enemy)
-                battle.fight()
-                if not self.player.is_alive:
-                    break
-                if enemy.hp < 1:
-                    self.add_gold_to_treasure_chest()
-            self.loot_treasure_chest()
+        for enemy in self.enemies:
+            print(enemy.to_string())
+            battle = Battle(self.player, enemy)
+            battle.fight()
+            if not self.player.is_alive:
+                break
+            if enemy.hp < 1:
+                self.add_gold_to_treasure_chest()
+            self.after_fight()
+        self.loot_treasure_chest()
 
+    def after_fight(self):
+        print("\tYour HP: " + str(self.player.health))
+        print("\n\tWhat would you like to do?")
+        print("\t1. Continue")
+        print("\t2. Drink health potion")
+        print("\t3. Drink attack potion")
+        print("\t4. Flee")
+        player_input = input()
 
+        if player_input == "1":
+            return
 
+        elif player_input == "2":
+            self.player.drink_health_potion()
+            print("\t> You now have" + str(self.player.health) + " HP." + "\n\t> You now have " +
+                  str(self.player.num_health_pots) + " health potions left.\n")
+
+        elif player_input == "3":
+            self.player.drink_attack_potion()
+            print("\t> You now have " +
+                  str(self.player.num_attack_pots) + " attack potions left.\n")
+
+        elif player_input == "4":
+            print("\t> You run away from the " + self.enemy.name)
+            self.battle_is_on = False
+            return
+
+        else:
+            print("\tInvalid command")
