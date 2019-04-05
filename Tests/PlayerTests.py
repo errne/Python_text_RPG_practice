@@ -6,6 +6,7 @@ class PlayerTests(unittest.TestCase):
 
     def setUp(self):
         self.player = Player("Obi")
+        self.new_weapon = Weapon(MaterialTypes.STEEL, WeaponTypes.BATTLEAXE)
 
     def test_name(self):
         self.assertEqual("Obi", self.player.name)
@@ -60,6 +61,17 @@ class PlayerTests(unittest.TestCase):
     def test_player_dies(self):
         self.player.take_damage(125)
         self.assertEqual(False, self.player.is_alive)
+
+    def test_can_equip_new_weapon(self):
+        self.player.equip_new_weapon(self.new_weapon)
+        self.assertEqual(66, self.player.max_attack_damage)
+
+    def test_buy_new_weapon(self):
+        self.player.add_gold_to_pouch(78)
+        self.player.buy_weapon(self.new_weapon, 75)
+        self.assertEqual(66, self.player.max_attack_damage)
+        self.assertEqual(3, self.player.gold_pouch)
+
 
 
 

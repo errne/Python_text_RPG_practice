@@ -62,4 +62,16 @@ class Player:
     def add_gold_to_pouch(self, amount_of_gold):
         self.gold_pouch += amount_of_gold
 
+    def buy_weapon(self, weapon, price):
+        if price <= self.gold_pouch:
+            self.gold_pouch -= price
+            self.equip_new_weapon(weapon)
+        else:
+            print("You do not have enough gold for this purchase")
+            return
+
+    def equip_new_weapon(self, weapon):
+        self.weapon = weapon
+        self.set_max_attack_damage()
+
 
