@@ -66,7 +66,7 @@ class Room:
                   str(self.player.num_attack_pots) + " attack potions left.\n")
 
         elif player_input == "4":
-            print("\t> You run away from the " + self.enemy.name)
+            print("\t> You run away")
             self.battle_is_on = False
             return
 
