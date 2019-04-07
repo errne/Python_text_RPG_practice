@@ -20,5 +20,19 @@ class Shop:
         return weapons_stock
 
     def display_weapons(self):
+        display_number = 0
         for weapon in self.weapons:
-            print("\t Buy " + weapon.to_string() + " for " + str(weapon.max_damage * 3))
+            display_number += 1
+            print("\t " + str(display_number) + ". Buy " + weapon.to_string() + " for " + str(weapon.max_damage * 3))
+
+    def transaction(self):
+        print("Enter the number of item you wish to buy: ")
+        player_input = int(input())
+        return self.weapons[player_input-1]
+
+    def player_enter_shop(self, player):
+        print("You enter " + self.name + " shop")
+        print("\t Look at list of things you can buy.")
+        self.display_weapons()
+        sold_item = self.transaction()
+        player.buy_weapon(sold_item, sold_item.max_damage * 3)
