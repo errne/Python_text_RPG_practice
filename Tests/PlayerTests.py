@@ -42,14 +42,14 @@ class PlayerTests(unittest.TestCase):
         self.player.num_attack_pots += 1
         self.player.drink_attack_potion()
         self.assertEqual(15, self.player.base_attack_damage)
-        self.assertEqual(36, self.player.max_attack_damage)
+        self.assertEqual(33, self.player.max_attack_damage)
 
     def test_drink_attack_potion__over_limit(self):
         self.player.num_attack_pots += 10
         for _ in range(9):
             self.player.drink_attack_potion()
         self.assertEqual(45, self.player.base_attack_damage)
-        self.assertEqual(66, self.player.max_attack_damage)
+        self.assertEqual(63, self.player.max_attack_damage)
 
     def test_player_starts_with_0_gold(self):
         self.assertEqual(0, self.player.gold_pouch)

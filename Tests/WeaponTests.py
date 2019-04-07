@@ -10,4 +10,7 @@ class WeaponTests(unittest.TestCase):
         self.weapon = Weapon(MaterialTypes.WOOD, WeaponTypes.SWORD)
 
     def test_max_damage(self):
-        self.assertEqual(21, self.weapon.max_damage)
+        self.assertEqual(18, self.weapon.max_damage)
+
+    def test_name(self):
+        self.assertEqual("Wood sword", self.weapon.to_string())

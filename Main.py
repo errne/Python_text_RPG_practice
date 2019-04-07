@@ -17,7 +17,7 @@ game.display_intro()
 player = game.create_player(game.player_name)
 
 shop = Shop("Testor")
-shop.generate_weapons_stock()
+shop.display_weapons()
 room = Room(player)
 room.generate_enemies()
 room.room_fights()

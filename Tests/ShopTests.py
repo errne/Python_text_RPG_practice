@@ -17,4 +17,4 @@ class ShopTests(unittest.TestCase):
 
     def test_player_can_equip_weapon_from_list(self):
         self.player.equip_new_weapon(self.shop.weapons[3])
-        self.assertEqual(34, self.player.max_attack_damage)
+        self.assertEqual(31, self.player.max_attack_damage)

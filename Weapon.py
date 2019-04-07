@@ -7,3 +7,6 @@ class Weapon:
 
     def calculate_max_damage(self):
         return self.material_type.value * self.weapon_type.value
+
+    def to_string(self):
+        return self.material_type.name.capitalize() + " " + self.weapon_type.name.lower()

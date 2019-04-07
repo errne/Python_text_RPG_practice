@@ -3,9 +3,9 @@ from enum import Enum
 
 class MaterialTypes(Enum):
     WOOD = 3
-    IRON = 5
-    STEEL = 7
-    MITHRIL = 9
+    IRON = 6
+    STEEL = 8
+    MITHRIL = 10
 
     def create_list(self):
         material_list =[]
