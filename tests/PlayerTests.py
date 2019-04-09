@@ -1,4 +1,7 @@
 import unittest
+
+from Armour import Armour
+from ArmourMaterials import ArmourMaterials
 from Player import *
 
 
@@ -7,6 +10,8 @@ class PlayerTests(unittest.TestCase):
     def setUp(self):
         self.player = Player("Obi")
         self.new_weapon = Weapon(MaterialTypes.STEEL, WeaponTypes.BATTLEAXE)
+        self.helm = Armour(ArmourMaterials.LEATHER, ArmourTypes.HELM)
+        self.boots = Armour(ArmourMaterials.STEEL, ArmourTypes.BOOTS)
 
     def test_name(self):
         self.assertEqual("Obi", self.player.name)
@@ -71,6 +76,14 @@ class PlayerTests(unittest.TestCase):
         self.player.buy_weapon(self.new_weapon, 75)
         self.assertEqual(66, self.player.max_attack_damage)
         self.assertEqual(3, self.player.gold_pouch)
+
+    def test_total_armour_level__no_armour(self):
+        self.assertEqual(0, self.player.get_total_armour_level())
+
+    def test_total_armour_level_with_some_armour(self):
+        self.player.equip_new_armour(self.helm)
+        self.player.equip_new_armour(self.boots)
+        self.assertEqual(18, self.player.get_total_armour_level())
 
     # def test_add_item_to_inventory(self):
     #     loot_sword = Weapon(MaterialTypes.IRON, WeaponTypes.AXE)

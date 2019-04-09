@@ -1,4 +1,6 @@
 import random
+
+from ArmourTypes import ArmourTypes
 from Weapon import *
 from MaterialTypes import *
 from WeaponTypes import *
@@ -14,6 +16,7 @@ class Player:
 
     def __init__(self, name):
         self.__health = 100
+        self.__armour_slots = {"Helm": None, "Chest": None, "Trousers": None, "Boots": None}
         self.name = name
         self.weapon = Weapon(MaterialTypes.WOOD, WeaponTypes.SWORD)
         self.max_attack_damage = self.base_attack_damage + self.weapon.max_damage
@@ -79,11 +82,26 @@ class Player:
         self.set_max_attack_damage()
         print("You have equipped " + self.weapon.to_string())
 
-    def add_item_to_inventory(self, new_item):
-        for item in self.inventory:
-            if item.to_string() == new_item.to_string():
-                self.inventory[item] += 1
+    def equip_new_armour(self, armour):
+        if armour.armour_type == ArmourTypes.BOOTS:
+            self.__armour_slots["Boots"] = armour
+        elif armour.armour_type == ArmourTypes.HELM:
+            self.__armour_slots["Helm"] = armour
+        elif armour.armour_type == ArmourTypes.TROUSERS:
+            self.__armour_slots["Trousers"] = armour
+        elif armour.armour_type == ArmourTypes.CHEST:
+            self.__armour_slots["Chest"] = armour
 
-        # self.inventory[new_item] = 1
+    def get_total_armour_level(self):
+        total_armour_value = 0
+        for armour in self.__armour_slots:
+            if self.__armour_slots[armour] is not None:
+                total_armour_value += self.__armour_slots[armour].armour_level
+        return total_armour_value
 
+    # def add_item_to_inventory(self, new_item):
+    #     for item in self.inventory:
+    #         if item.to_string() == new_item.to_string():
+    #             self.inventory[item] += 1
 
+    # self.inventory[new_item] = 1
