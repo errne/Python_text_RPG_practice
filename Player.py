@@ -61,7 +61,10 @@ class Player:
         return random.randint(5, self.max_attack_damage)
 
     def take_damage(self, damage_received):
-        self.__health -= damage_received
+        damage_received_with_armour = damage_received - self.armour_protection_value()
+        if damage_received_with_armour < 1:
+            damage_received_with_armour = 0
+        self.__health -= damage_received_with_armour
         if self.__health < 1:
             self.is_alive = False
             self.__health = 0
@@ -98,6 +101,10 @@ class Player:
             if self.__armour_slots[armour] is not None:
                 total_armour_value += self.__armour_slots[armour].armour_level
         return total_armour_value
+
+    def armour_protection_value(self):
+        armour_protection = self.get_total_armour_level()
+        return armour_protection // 3
 
     # def add_item_to_inventory(self, new_item):
     #     for item in self.inventory:

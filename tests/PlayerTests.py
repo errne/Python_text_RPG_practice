@@ -44,6 +44,12 @@ class PlayerTests(unittest.TestCase):
         self.player.take_damage(25)
         self.assertEqual(75, self.player.get_health())
 
+    def test_can_receive_damage_with_armour(self):
+        self.player.equip_new_armour(self.helm)
+        self.player.equip_new_armour(self.boots)
+        self.player.take_damage(15)
+        self.assertEqual(91, self.player.get_health())
+
     def test_drink_attack_potion(self):
         self.player.num_attack_pots += 1
         self.player.drink_attack_potion()
@@ -91,6 +97,12 @@ class PlayerTests(unittest.TestCase):
         self.player.equip_new_armour(self.boots)
         self.player.equip_new_armour(self.helm2)
         self.assertEqual(23, self.player.get_total_armour_level())
+
+    def test_armour_protection_value(self):
+        self.player.equip_new_armour(self.helm)
+        self.player.equip_new_armour(self.boots)
+        self.player.equip_new_armour(self.helm2)
+        self.assertEqual(7, self.player.armour_protection_value())
 
 
     # def test_add_item_to_inventory(self):
