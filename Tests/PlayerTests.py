@@ -12,7 +12,7 @@ class PlayerTests(unittest.TestCase):
         self.assertEqual("Obi", self.player.name)
 
     def test_starting_health(self):
-        self.assertEqual(100, self.player.health)
+        self.assertEqual(100, self.player.get_health())
 
     def test_has_3_health_potions_at_start(self):
         self.assertEqual(3, self.player.num_health_pots)
@@ -21,14 +21,14 @@ class PlayerTests(unittest.TestCase):
         for _ in range(3):
             self.player.take_damage(15)
         self.player.drink_health_potion()
-        self.assertEqual(85, self.player.health)
+        self.assertEqual(85, self.player.get_health())
 
     def test_health_pots_not_heal_when_0(self):
         for _ in range(3):
             self.player.drink_health_potion()
         self.player.take_damage(15)
         self.player.drink_health_potion()
-        self.assertEqual(85, self.player.health)
+        self.assertEqual(85, self.player.get_health())
         self.assertEqual(0, self.player.num_health_pots)
 
     def test_can_deal_damage(self):
@@ -36,7 +36,7 @@ class PlayerTests(unittest.TestCase):
 
     def test_can_receive_damage(self):
         self.player.take_damage(25)
-        self.assertEqual(75, self.player.health)
+        self.assertEqual(75, self.player.get_health())
 
     def test_drink_attack_potion(self):
         self.player.num_attack_pots += 1
@@ -71,6 +71,20 @@ class PlayerTests(unittest.TestCase):
         self.player.buy_weapon(self.new_weapon, 75)
         self.assertEqual(66, self.player.max_attack_damage)
         self.assertEqual(3, self.player.gold_pouch)
+
+    # def test_add_item_to_inventory(self):
+    #     loot_sword = Weapon(MaterialTypes.IRON, WeaponTypes.AXE)
+    #     self.player.add_item_to_inventory(loot_sword)
+    #     self.assertEqual(1, len(self.player.inventory))
+    #
+    # def test_add_item_to_inventory_again(self):
+    #     loot_sword = Weapon(MaterialTypes.IRON, WeaponTypes.AXE)
+    #     loot_sword2 = Weapon(MaterialTypes.IRON, WeaponTypes.AXE)
+    #     self.player.add_item_to_inventory(loot_sword)
+    #     self.player.add_item_to_inventory(loot_sword2)
+    #     # self.assertEqual(1, len(self.player.inventory))
+    #     self.assertEqual({}, self.player.inventory)
+
 
 
 

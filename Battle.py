@@ -13,7 +13,7 @@ class Battle:
     def fight(self):
 
         while self.battle_is_on:
-            print("\tYour HP: " + str(self.player.health))
+            print("\tYour HP: " + str(self.player.get_health()))
             print("\t" + self.enemy.name + "'s HP: " + str(self.enemy.hp))
             print("\n\tWhat would you like to do?")
             print("\t1. Attack")
@@ -26,7 +26,7 @@ class Battle:
 
             elif player_input == "2":
                 self.player.drink_health_potion()
-                print("\t> You now have" + str(self.player.health) + " HP." + "\n\t> You now have " +
+                print("\t> You now have" + str(self.player.get_health()) + " HP." + "\n\t> You now have " +
                       str(self.player.num_health_pots) + " health potions left.\n")
 
             elif player_input == "3":
@@ -68,12 +68,12 @@ class Battle:
             self.battle_is_on = False
 
     def aftermath(self):
-        if self.player.health < 1:
+        if self.player.get_health() < 1:
             print("\t> You have been defeated")
 
         elif self.enemy.hp < 1:
             print(" # " + self.enemy.name + " was defeated! # ")
-            print((" # You have " + str(self.player.health) + "HP left # "))
+            print((" # You have " + str(self.player.get_health()) + "HP left # "))
             self.loot_drop()
 
         else:

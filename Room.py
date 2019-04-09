@@ -44,7 +44,7 @@ class Room:
         self.loot_treasure_chest()
 
     def after_fight(self):
-        print("\tYour HP: " + str(self.player.health))
+        print("\tYour HP: " + str(self.player.get_health()))
         print("\n\tWhat would you like to do?")
         print("\t1. Continue")
         print("\t2. Drink health potion")
@@ -57,7 +57,7 @@ class Room:
 
         elif player_input == "2":
             self.player.drink_health_potion()
-            print("\t> You now have" + str(self.player.health) + " HP." + "\n\t> You now have " +
+            print("\t> You now have" + str(self.player.get_health()) + " HP." + "\n\t> You now have " +
                   str(self.player.num_health_pots) + " health potions left.\n")
 
         elif player_input == "3":
