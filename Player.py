@@ -11,7 +11,6 @@ class Player:
     num_health_pots = 3
     num_attack_pots = 0
     gold_pouch = 0
-    inventory = {}
     is_alive = True
 
     def __init__(self, name):
@@ -20,6 +19,7 @@ class Player:
         self.name = name
         self.weapon = Weapon(MaterialTypes.WOOD, WeaponTypes.SWORD)
         self.max_attack_damage = self.base_attack_damage + self.weapon.max_damage
+        self.inventory = []
 
     def get_health(self):
         return self.__health
@@ -106,9 +106,13 @@ class Player:
         armour_protection = self.get_total_armour_level()
         return armour_protection // 3
 
-    # def add_item_to_inventory(self, new_item):
-    #     for item in self.inventory:
-    #         if item.to_string() == new_item.to_string():
-    #             self.inventory[item] += 1
+    def add_item_to_inventory(self, item):
+        self.inventory.append(item)
 
-    # self.inventory[new_item] = 1
+    def sell_all_inventory(self):
+        total_income = 0
+        for item in self.inventory:
+            total_income += item.price
+        self.inventory.clear()
+        self.add_gold_to_pouch(total_income)
+

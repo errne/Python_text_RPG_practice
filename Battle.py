@@ -1,5 +1,9 @@
 import random
 
+from Armour import Armour
+from ArmourMaterials import ArmourMaterials
+from ArmourTypes import ArmourTypes
+
 
 class Battle:
 
@@ -9,6 +13,7 @@ class Battle:
         self.battle_is_on = True
         self.health_potion_drop_chance = 95
         self.attack_potion_drop_chance = 25
+        self.armour_drop_chance = 75
 
     def fight(self):
 
@@ -50,6 +55,11 @@ class Battle:
             self.player.num_attack_pots += 1
             print(" # You now have " + str(self.player.num_attack_pots) + " attack potion(s). # ")
 
+        if random.randint(1, 100) < self.armour_drop_chance:
+            armour = self.generate_drop()
+            print(" # The " + self.enemy.name + " dropped a " + armour.to_string() + " . # ")
+            self.player.add_item_to_inventory(armour)
+
     def attack_choice(self):
         damage_calculation = self.player.deal_damage() - self.enemy.armour
         damage_dealt = max(0, damage_calculation)
@@ -78,3 +88,9 @@ class Battle:
 
         else:
             print("\t> You fled the battle you coward")
+
+    def generate_drop(self):
+        armour_type = random.choice(ArmourTypes.create_list(self))
+        armour_material = random.choice([ArmourMaterials.LEATHER, ArmourMaterials.CLOTH])
+        armour = Armour(armour_material, armour_type)
+        return armour

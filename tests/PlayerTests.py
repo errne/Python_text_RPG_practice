@@ -104,19 +104,21 @@ class PlayerTests(unittest.TestCase):
         self.player.equip_new_armour(self.helm2)
         self.assertEqual(7, self.player.armour_protection_value())
 
+    def test_inventory_empty_at_beginning(self):
+        self.assertEqual(0, len(self.player.inventory))
 
-    # def test_add_item_to_inventory(self):
-    #     loot_sword = Weapon(MaterialTypes.IRON, WeaponTypes.AXE)
-    #     self.player.add_item_to_inventory(loot_sword)
-    #     self.assertEqual(1, len(self.player.inventory))
-    #
-    # def test_add_item_to_inventory_again(self):
-    #     loot_sword = Weapon(MaterialTypes.IRON, WeaponTypes.AXE)
-    #     loot_sword2 = Weapon(MaterialTypes.IRON, WeaponTypes.AXE)
-    #     self.player.add_item_to_inventory(loot_sword)
-    #     self.player.add_item_to_inventory(loot_sword2)
-    #     # self.assertEqual(1, len(self.player.inventory))
-    #     self.assertEqual({}, self.player.inventory)
+    def test_add_item_to_inventory(self):
+        self.player.add_item_to_inventory(self.helm2)
+        self.assertEqual(1, len(self.player.inventory))
+
+    def test_sell_all_inventory(self):
+        self.player.add_item_to_inventory(self.helm2)
+        self.player.add_item_to_inventory(self.helm2)
+        self.assertEqual(2, len(self.player.inventory))
+        self.player.sell_all_inventory()
+        self.assertEqual(0, len(self.player.inventory))
+        self.assertEqual(84, self.player.gold_pouch)
+
 
 
 
