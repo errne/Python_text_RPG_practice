@@ -14,3 +14,6 @@ class ArmourTests(unittest.TestCase):
 
     def test_print_name(self):
         self.assertEqual("Steel helm", self.armour.to_string())
+
+    def test_has_price(self):
+        self.assertEqual(36, self.armour.price)
