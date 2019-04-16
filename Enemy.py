@@ -36,9 +36,8 @@ class Enemy:
 
     def receive_damage(self, received_damage):
         received_damage_with_armour = received_damage - self.armour
-        if received_damage_with_armour < 1:
-            received_damage_with_armour = 0
-        self.hp -= received_damage_with_armour
+        damage_received = max(0, received_damage_with_armour)
+        self.hp -= damage_received
         if self.hp < 1:
             self.is_alive = False
             self.hp = 0

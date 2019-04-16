@@ -61,8 +61,7 @@ class Battle:
             self.player.add_item_to_inventory(armour)
 
     def attack_choice(self):
-        damage_calculation = self.player.deal_damage() - self.enemy.armour
-        damage_dealt = max(0, damage_calculation)
+        damage_dealt = self.player.deal_damage()
         self.enemy.receive_damage(damage_dealt)
         damage_taken = self.enemy.deal_damage_to_player()
         self.player.take_damage(damage_taken)
