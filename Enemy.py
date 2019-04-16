@@ -25,17 +25,20 @@ class Enemy:
 
     def pick_armour_level(self):
         if self.random_for_type == 0:
-            return 5
-        elif self.random_for_type == 1:
-            return 15
-        else:
             return 3
+        elif self.random_for_type == 1:
+            return 4
+        else:
+            return 2
 
     def deal_damage_to_player(self):
         return random.randint(3, self.max_attack_damage)
 
     def receive_damage(self, received_damage):
-        self.hp -= received_damage
+        received_damage_with_armour = received_damage - self.armour
+        if received_damage_with_armour < 1:
+            received_damage_with_armour = 0
+        self.hp -= received_damage_with_armour
         if self.hp < 1:
             self.is_alive = False
             self.hp = 0
