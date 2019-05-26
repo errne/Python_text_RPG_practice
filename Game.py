@@ -1,4 +1,5 @@
 from Player import *
+from World import World
 
 
 class Game:
@@ -19,3 +20,8 @@ class Game:
 
     def create_player(self, player_name):
         return Player(player_name)
+
+    def enter_world(self, player):
+        world = World(player)
+        world.display_intro()
+        world.travel()
