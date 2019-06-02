@@ -119,6 +119,14 @@ class PlayerTests(unittest.TestCase):
         self.assertEqual(0, len(self.player.inventory))
         self.assertEqual(84, self.player.gold_pouch)
 
+    def test_inventory_checking(self):
+        self.player.add_item_to_inventory(self.helm2)
+        self.player.add_item_to_inventory(self.helm2)
+        self.player.add_item_to_inventory(self.boots)
+        item_list = self.player.check_inventory()
+        self.assertEqual("Mithril helm, Mithril helm, Steel boots", item_list)
+
+
 
 
 

@@ -116,3 +116,11 @@ class Player:
         self.inventory.clear()
         self.add_gold_to_pouch(total_income)
 
+    def check_inventory(self):
+        inventory_list = ""
+        for item in self.inventory:
+            item_name = item.to_string()
+            inventory_list += item_name + ", "
+        inventory_list = inventory_list[:-2]
+        return inventory_list
+
