@@ -83,7 +83,7 @@ class Player:
     def equip_new_weapon(self, weapon):
         self.weapon = weapon
         self.set_max_attack_damage()
-        print("You have equipped " + self.weapon.to_string())
+        print(f"You have equipped {self.weapon.to_string()}")
 
     def equip_new_armour(self, armour):
         if armour.armour_type == ArmourTypes.BOOTS:

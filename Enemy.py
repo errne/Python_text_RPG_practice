@@ -43,4 +43,4 @@ class Enemy:
             self.hp = 0
 
     def to_string(self):
-        return "You meet a " + self.name + " who has " + str(self.hp) + " hp and wants to fight you"
+        return f"You meet a {self.name} who has {self.hp} hp and wants to fight you"
