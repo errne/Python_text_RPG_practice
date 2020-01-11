@@ -1,6 +1,6 @@
 import random
 
-import self as self
+# import self as self
 
 from Enemy import *
 from Player import *
