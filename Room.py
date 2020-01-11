@@ -27,8 +27,8 @@ class Room:
     def loot_treasure_chest(self):
         if self.player.is_alive:
             self.player.add_gold_to_pouch(self.treasure_chest)
-            print("# You found " + str(self.treasure_chest) + " gold in treasure chest. #")
-            print("# Now you have " + str(self.player.gold_pouch) + " gold in your pouch. #")
+            print(f"# You found {self.treasure_chest} gold in treasure chest. #")
+            print(f"# Now you have {self.player.gold_pouch} gold in your pouch. #")
             self.treasure_chest = 0
 
     def room_fights(self):
@@ -44,7 +44,7 @@ class Room:
         self.loot_treasure_chest()
 
     def after_fight(self):
-        print("\tYour HP: " + str(self.player.get_health()))
+        print(f"\tYour HP: {self.player.get_health()}")
         print("\n\tWhat would you like to do?")
         print("\t1. Continue")
         print("\t2. Drink health potion")
@@ -57,13 +57,12 @@ class Room:
 
         elif player_input == "2":
             self.player.drink_health_potion()
-            print("\t> You now have" + str(self.player.get_health()) + " HP." + "\n\t> You now have " +
-                  str(self.player.num_health_pots) + " health potions left.\n")
+            print(f"\t> You now have {self.player.get_health()} HP. \n\t> You now have {self.player.num_health_pots}"
+                  f" health potions left.\n")
 
         elif player_input == "3":
             self.player.drink_attack_potion()
-            print("\t> You now have " +
-                  str(self.player.num_attack_pots) + " attack potions left.\n")
+            print(f"\t> You now have {self.player.num_attack_pots} attack potions left.\n")
 
         elif player_input == "4":
             print("\t> You run away")

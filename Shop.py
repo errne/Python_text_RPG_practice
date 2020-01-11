@@ -23,21 +23,21 @@ class Shop:
         display_number = 0
         for weapon in self.weapons:
             display_number += 1
-            print("\t " + str(display_number) + ". Buy " + weapon.to_string() + " for " + str(weapon.max_damage * 3))
+            print(f"\t {display_number}. Buy {weapon.to_string()} for {weapon.max_damage * 3}")
 
     def transaction(self):
         print("what do you wish to buy: ")
         player_input = 0
         while 1 > player_input or 16 < player_input:
             try:
-                player_input = int(input("Please enter your number between 1 and " + str(len(self.weapons)) + ": \n"))
+                player_input = int(input(f"Please enter your number between 1 and {len(self.weapons)}: \n"))
             except ValueError:
                 print("That wasn't a number :(")
 
         return self.weapons[player_input-1]
 
     def player_enter_shop(self, player):
-        print("You enter " + self.name + " shop")
+        print(f"You enter {self.name} shop")
         print("\t Look at the list of things you can buy.")
         self.display_weapons()
         sold_item = self.transaction()
