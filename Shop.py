@@ -40,5 +40,15 @@ class Shop:
         print(f"You enter {self.name} shop")
         print("\t Look at the list of things you can buy.")
         self.display_weapons()
-        sold_item = self.transaction()
-        player.buy_weapon(sold_item, sold_item.max_damage * 3)
+        print("\t Would you like to buy something?")
+        player_input = input().capitalize()
+        negative_answers = {"No", "N", "Noo", "Nope", "Never"}
+        positive_answer = {"Yes", "Y", "Yep", "Ya", "Aha", "Always"}
+        if player_input in negative_answers:
+            print("Bye, come again!")
+            return
+        elif player_input in positive_answer:
+            sold_item = self.transaction()
+            player.buy_weapon(sold_item, sold_item.max_damage * 3)
+        else:
+            print("Simple yes or no would suffice")
