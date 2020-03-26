@@ -34,21 +34,66 @@ class Shop:
             except ValueError:
                 print("That wasn't a number :(")
 
-        return self.weapons[player_input-1]
+        return self.weapons[player_input - 1]
 
-    def player_enter_shop(self, player):
+    def player_buying(self, player):
         print(f"You enter {self.name} shop")
         print("\t Look at the list of things you can buy.")
         self.display_weapons()
-        print("\t Would you like to buy something?")
+        print("\t 1. Would you like to buy something?")
         player_input = input().capitalize()
         negative_answers = {"No", "N", "Noo", "Nope", "Never"}
         positive_answer = {"Yes", "Y", "Yep", "Ya", "Aha", "Always"}
         if player_input in negative_answers:
-            print("Bye, come again!")
+            print("Maybe next time.")
             return
         elif player_input in positive_answer:
             sold_item = self.transaction()
             player.buy_weapon(sold_item, sold_item.max_damage * 3)
         else:
             print("Simple yes or no would suffice")
+
+    def player_selling_all(self, player):
+        player.sell_all_inventory()
+
+    def player_selling(self, player):
+        print("Which item would you like to sell?")
+        item_list = player.inventory
+        item_number = 0
+        for item in item_list:
+            item_number += 1
+            print(f"\t {item_number}. Sell {item.to_string()} fo {item.price}")
+        player_input = int(input())
+        self.player_selling_particular_item(player_input, player)
+
+    def player_selling_particular_item(self, item_number, player):
+        item = item_number - 1
+        print(f"You sold {player.inventory[item].to_string()} for {player.inventory[item].price}.")
+        player.add_gold_to_pouch(player.inventory[item].price)
+        player.inventory.pop(item)
+        print(f"\t Now you have {player.gold_pouch} gold")
+
+    def player_in_shop(self, player):
+        print(f"You enter {self.name} shop")
+        print("Welcome how can I help?")
+        print("\t 1. Would you like to see the stock?")
+        print("\t 2. Would you like to sell something?")
+        print("\t 3. Would you like to sell everything?")
+        print("\t 4. Would you like leave the shop?")
+
+        player_input = input()
+
+        if player_input == "1":
+            self.player_buying(player)
+
+        elif player_input == "2":
+            self.player_selling(player)
+
+        elif player_input == "3":
+            self.player_selling_all(player)
+
+        elif player_input == "4":
+            return
+
+        else:
+            print("What was that?")

@@ -26,8 +26,8 @@ class World:
         if random_no == 2:
             print("You see an entrance to the dungeon.\n")
             self.enter_room()
-        if random_no ==3:
-            print ("You walk and walk and walk and nothing interesting happens")
+        if random_no == 3:
+            print("You walk and walk and walk and nothing interesting happens")
 
     def generate_shop(self):
         name_list = ["Zossy's Sharpies", "Bran's Boom-Booms", "Mesmash Things", "Swords Galore", "Pick'a'Sord", "Weaponsbury"]
@@ -37,12 +37,12 @@ class World:
 
     def enter_shop(self):
         print("Would you like to enter?")
-        player_input = input()
-        if player_input == "no":
+        player_input = self.player_choice()
+        if player_input == "No":
             return
-        if player_input == "yes":
+        if player_input == "Yes":
            shop = self.generate_shop()
-           shop.player_enter_shop(self.player)
+           shop.player_in_shop(self.player)
 
     def generate_room(self):
         room = Room(self.player)
@@ -50,22 +50,30 @@ class World:
 
     def enter_room(self):
         print("Will you enter it?")
-        player_input = input()
-        if player_input == "no":
+        player_input = self.player_choice()
+        if player_input == "No":
             return
-        if player_input == "yes":
+        if player_input == "Yes":
             room = self.generate_room()
             room.generate_enemies()
             room.room_fights()
 
     def will_continue(self):
         print("Would you like to continue your adventure?")
-        player_input = input()
-        if player_input == "no":
+        player_input = self.player_choice()
+        if player_input == "No":
             self.traveling_is_on = False
-        if player_input == "yes":
+        if player_input == "Yes":
             return
 
+    def player_choice(self):
+        player_input = input().capitalize()
+        positive_answers = {"Yes", "Y", "Yep", "Yeah", "Ya", "Aha", "Always", "Sure", "Definitely"}
+        negative_answers = {"No", "N", "Noo", "Nope", "Never"}
+        if player_input in positive_answers:
+            return "Yes"
+        elif player_input in negative_answers:
+            return "No"
 
 
 

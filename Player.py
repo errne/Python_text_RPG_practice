@@ -81,6 +81,7 @@ class Player:
             return
 
     def equip_new_weapon(self, weapon):
+        self.inventory.append(self.weapon)
         self.weapon = weapon
         self.set_max_attack_damage()
         print(f"You have equipped {self.weapon.to_string()}")
@@ -114,6 +115,7 @@ class Player:
         for item in self.inventory:
             total_income += item.price
         self.inventory.clear()
+        print(f"You sold your item and got {total_income} gold")
         self.add_gold_to_pouch(total_income)
 
     def check_inventory(self):
