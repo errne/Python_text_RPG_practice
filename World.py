@@ -1,5 +1,6 @@
 import random
 
+from RandomEvent import RandomEvent
 from Room import Room
 from Shop import Shop
 
@@ -19,7 +20,7 @@ class World:
             self.will_continue()
 
     def generate_next_stop(self):
-        random_no = random.randint(1, 3)
+        random_no = random.randint(1, 4)
         if random_no == 1:
             print("You come to the shop. \n")
             self.enter_shop()
@@ -28,6 +29,8 @@ class World:
             self.enter_room()
         if random_no == 3:
             print("You walk and walk and walk and nothing interesting happens")
+        if random_no == 4:
+            self.random_event_start()
 
     def generate_shop(self):
         name_list = ["Zossy's Sharpies", "Bran's Boom-Booms", "Mesmash Things", "Swords Galore", "Pick'a'Sord", "Weaponsbury"]
@@ -57,6 +60,15 @@ class World:
             room = self.generate_room()
             room.generate_enemies()
             room.room_fights()
+
+    def generate_random_event(self):
+        random_no = random.randint(0, 2)
+        event = RandomEvent(random_no)
+        return event
+
+    def random_event_start(self):
+        event = self.generate_random_event()
+        print(f"{event.event_greeting()}")
 
     def will_continue(self):
         print("Would you like to continue your adventure?")
