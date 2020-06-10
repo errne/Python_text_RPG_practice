@@ -13,3 +13,4 @@ class RandomEventTests(unittest.TestCase):
     def test_event_greeting(self):
         self.assertEqual("Greetings, traveler", self.event.event_greeting())
         self.assertNotEqual("Heloooo,", self.event.event_greeting())
+

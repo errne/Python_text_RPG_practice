@@ -63,12 +63,13 @@ class World:
 
     def generate_random_event(self):
         random_no = random.randint(0, 2)
-        event = RandomEvent(random_no)
+        event = RandomEvent(random_no, self.player)
         return event
 
     def random_event_start(self):
         event = self.generate_random_event()
         print(f"{event.event_greeting()}")
+        event.event_task()
 
     def will_continue(self):
         print("Would you like to continue your adventure?")
