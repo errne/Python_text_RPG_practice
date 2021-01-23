@@ -32,7 +32,7 @@ class Shop:
                 player_input = int(input(f"Please enter your number between 1 and {limit}: \n"))
             except ValueError:
                 print("That wasn't a number :(")
-        return player_input-1
+        return player_input - 1
 
     def player_buying(self, player):
         print(f"You enter {self.name} shop")
@@ -54,23 +54,32 @@ class Shop:
             print("Simple yes or no would suffice")
 
     def player_selling_all(self, player):
-        player.sell_all_inventory()
+        if self.inventory_check(player):
+            player.sell_all_inventory()
 
     def player_selling(self, player):
-        print("Which item would you like to sell?")
-        item_list = player.inventory
-        item_number = 0
-        for item in item_list:
-            item_number += 1
-            print(f"\t {item_number}. Sell {item.to_string()} fo {item.price}")
-        limit = len(player.inventory)
-        self.player_selling_particular_item(self.transaction(limit), player)
+        if self.inventory_check(player):
+            self.inventory_check(player)
+            print("Which item would you like to sell?")
+            item_list = player.inventory
+            item_number = 0
+            for item in item_list:
+                item_number += 1
+                print(f"\t {item_number}. Sell {item.to_string()} fo {item.price}")
+            limit = len(player.inventory)
+            self.player_selling_particular_item(self.transaction(limit), player)
+        return
 
     def player_selling_particular_item(self, item_number, player):
         print(f"You sold {player.inventory[item_number].to_string()} for {player.inventory[item_number].price}.")
         player.add_gold_to_pouch(player.inventory[item_number].price)
         player.inventory.pop(item_number)
         print(f"\t Now you have {player.gold_pouch} gold")
+
+    def inventory_check(self, player):
+        if len(player.inventory) < 1:
+            print("You have nothing to sell")
+            return False
 
     def player_in_shop(self, player):
         print(f"You enter {self.name} shop")

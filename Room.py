@@ -1,4 +1,3 @@
-import random
 from Enemy import *
 from Battle import *
 

@@ -12,7 +12,6 @@ from Shop import *
 
 
 game = Game()
-
 game.display_intro()
 player = game.create_player(game.player_name)
 
