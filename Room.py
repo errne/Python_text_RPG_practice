@@ -14,8 +14,7 @@ class Room:
         return random.randint(1, 3)
 
     def generate_enemies(self):
-        number_of_enemies = self.generate_number_of_enemies()
-        for enemy in range(0, number_of_enemies):
+        for enemy in range(0, self.number_of_enemies):
             enemy = Enemy()
             self.enemies.append(enemy)
 

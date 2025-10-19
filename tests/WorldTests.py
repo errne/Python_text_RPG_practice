@@ -9,8 +9,8 @@ class WorldTests(unittest.TestCase):
 
     def setUp(self):
         self.player = Player("Obi")
-        self.event = RandomEvent(1)
-        self.world = World(self.player)
+        self.world = World(self.player, None) # Passing None for game object as it is not used in this test
+        self.event = RandomEvent(1, self.player)
 
     def test_random_event_greeting(self):
         new_event = self.world.generate_random_event()

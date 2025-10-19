@@ -7,8 +7,9 @@ from Shop import Shop
 
 class World:
 
-    def __init__(self, player):
+    def __init__(self, player, game):
         self.player = player
+        self.game = game
         self.traveling_is_on = True
 
     def display_intro(self):
@@ -72,21 +73,27 @@ class World:
         event.event_task()
 
     def will_continue(self):
-        print("Would you like to continue your adventure?")
+        print("Would you like to continue your adventure? (Yes/No/Save)")
         player_input = self.player_choice()
         if player_input == "No":
             self.traveling_is_on = False
         if player_input == "Yes":
             return
+        if player_input == "Save":
+            self.game.save_game(self.player)
+            self.traveling_is_on = False
 
     def player_choice(self):
         player_input = input().capitalize()
         positive_answers = {"Yes", "Y", "Yep", "Yeah", "Ya", "Aha", "Always", "Sure", "Definitely"}
         negative_answers = {"No", "N", "Noo", "Nope", "Never"}
+        save_answers = {"Save", "S"}
         if player_input in positive_answers:
             return "Yes"
         elif player_input in negative_answers:
             return "No"
+        elif player_input in save_answers:
+            return "Save"
 
 
 

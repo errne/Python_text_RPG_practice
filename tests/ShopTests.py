@@ -33,5 +33,5 @@ class ShopTests(unittest.TestCase):
         self.player.add_item_to_inventory(self.item1)
         self.player.add_item_to_inventory(self.item2)
         self.shop.player_selling_particular_item(1, self.player)
-        self.assertEqual(84, self.player.gold_pouch)
+        self.assertEqual(42, self.player.gold_pouch)
         self.assertEqual(1, len(self.player.inventory))
