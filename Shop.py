@@ -80,6 +80,7 @@ class Shop:
         if len(player.inventory) < 1:
             print("You have nothing to sell")
             return False
+        return True
 
     def player_in_shop(self, player):
         print(f"You enter {self.name} shop")

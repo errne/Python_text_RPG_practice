@@ -114,9 +114,9 @@ class Player:
         total_income = 0
         for item in self.inventory:
             total_income += item.price
+        self.add_gold_to_pouch(total_income)
         self.inventory.clear()
         print(f"You sold your item and got {total_income} gold")
-        self.add_gold_to_pouch(total_income)
 
     def check_inventory(self):
         inventory_list = ""

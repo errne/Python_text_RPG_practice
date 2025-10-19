@@ -15,7 +15,7 @@ class EnemyTests(unittest.TestCase):
 
     def test_enemies(self):
         self.room.generate_enemies()
-        self.assertEqual([], self.room.enemies)
+        self.assertNotEqual([], self.room.enemies)
 
     def test_room_knows_player_name(self):
         self.assertEqual("Obi", self.room.player.name)
@@ -31,5 +31,5 @@ class EnemyTests(unittest.TestCase):
     def test_treasure_chest_looting(self):
         self.room.add_gold_to_treasure_chest()
         self.room.loot_treasure_chest()
-        self.assertEqual(True, self.room.player.goldPouch > 9)
+        self.assertEqual(True, self.room.player.gold_pouch > 9)
         self.assertEqual(0, self.room.treasure_chest)

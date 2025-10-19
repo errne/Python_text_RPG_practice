@@ -8,7 +8,7 @@ class RandomEventTests(unittest.TestCase):
 
     def setUp(self):
         self.player = Player("Obi")
-        self.event = RandomEvent(1)
+        self.event = RandomEvent(1, self.player)
 
     def test_event_greeting(self):
         self.assertEqual("Greetings, traveler", self.event.event_greeting())
