@@ -21,17 +21,17 @@ class World:
             self.will_continue()
 
     def generate_next_stop(self):
-        random_no = random.randint(1, 4)
-        if random_no == 1:
-            print("You come to the shop. \n")
-            self.enter_shop()
-        if random_no == 2:
+        random_no = random.randint(1, 100)
+        if random_no <= 50:
             print("You see an entrance to the dungeon.\n")
             self.enter_room()
-        if random_no == 3:
-            print("You walk and walk and walk and nothing interesting happens")
-        if random_no == 4:
+        elif random_no <= 65:
+            print("You come to the shop. \n")
+            self.enter_shop()
+        elif random_no <= 85:
             self.random_event_start()
+        else:
+            print("You walk and walk and walk and nothing interesting happens")
 
     def generate_shop(self):
         name_list = ["Zossy's Sharpies", "Bran's Boom-Booms", "Mesmash Things", "Swords Galore", "Pick'a'Sord", "Weaponsbury"]
