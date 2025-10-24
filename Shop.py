@@ -47,6 +47,7 @@ class Shop:
             return
         elif player_input in positive_answer:
             print("What do you wish to buy? ")
+            print(f"# You have {player.gold_pouch} gold #")
             limit = len(self.weapons)
             sold_item = self.weapons[self.transaction(limit)]
             player.buy_weapon(sold_item, sold_item.max_damage * 3)
