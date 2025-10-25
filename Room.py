@@ -2,16 +2,17 @@ from Enemy import *
 from Battle import *
 
 
+def generate_number_of_enemies():
+    return random.randint(1, 3)
+
+
 class Room:
 
     def __init__(self, player):
-        self.number_of_enemies = self.generate_number_of_enemies()
+        self.number_of_enemies = generate_number_of_enemies()
         self.enemies = []
         self.player = player
         self.treasure_chest = 0
-
-    def generate_number_of_enemies(self):
-        return random.randint(1, 3)
 
     def generate_enemies(self):
         for enemy in range(0, self.number_of_enemies):

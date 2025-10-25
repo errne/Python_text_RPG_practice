@@ -3,6 +3,13 @@ from Weapon import Weapon
 from WeaponTypes import *
 
 
+def inventory_check(player):
+    if len(player.inventory) < 1:
+        print("You have nothing to sell")
+        return False
+    return True
+
+
 class Shop:
 
     def __init__(self, name):
@@ -55,12 +62,12 @@ class Shop:
             print("Simple yes or no would suffice")
 
     def player_selling_all(self, player):
-        if self.inventory_check(player):
+        if inventory_check(player):
             player.sell_all_inventory()
 
     def player_selling(self, player):
-        if self.inventory_check(player):
-            self.inventory_check(player)
+        if inventory_check(player):
+            inventory_check(player)
             print("Which item would you like to sell?")
             item_list = player.inventory
             item_number = 0
@@ -76,12 +83,6 @@ class Shop:
         player.add_gold_to_pouch(player.inventory[item_number].price)
         player.inventory.pop(item_number)
         print(f"\t Now you have {player.gold_pouch} gold")
-
-    def inventory_check(self, player):
-        if len(player.inventory) < 1:
-            print("You have nothing to sell")
-            return False
-        return True
 
     def player_in_shop(self, player):
         print(f"You enter {self.name} shop")
