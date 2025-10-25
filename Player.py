@@ -119,10 +119,15 @@ class Player:
         print(f"You sold your item and got {total_income} gold")
 
     def check_inventory(self):
+        inventory_string = f"You have {self.gold_pouch} gold.\n"
+        if not self.inventory:
+            inventory_string += "Your inventory is empty."
+            return inventory_string
         inventory_list = ""
         for item in self.inventory:
             item_name = item.to_string()
             inventory_list += item_name + ", "
         inventory_list = inventory_list[:-2]
-        return inventory_list
+        inventory_string += "Your inventory contains: " + inventory_list
+        return inventory_string
 

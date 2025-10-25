@@ -73,7 +73,7 @@ class World:
         event.event_task()
 
     def will_continue(self):
-        print("Would you like to continue your adventure? (Yes/No/Save)")
+        print("Would you like to continue your adventure? (Yes/No/Save/Inventory)")
         player_input = self.player_choice()
         if player_input == "No":
             self.traveling_is_on = False
@@ -82,18 +82,24 @@ class World:
         if player_input == "Save":
             self.game.save_game(self.player)
             self.traveling_is_on = False
+        if player_input == "Inventory":
+            print(self.player.check_inventory())
+            self.will_continue()
 
     def player_choice(self):
         player_input = input().capitalize()
         positive_answers = {"Yes", "Y", "Yep", "Yeah", "Ya", "Aha", "Always", "Sure", "Definitely"}
         negative_answers = {"No", "N", "Noo", "Nope", "Never"}
         save_answers = {"Save", "S"}
+        inventory_answers = {"Inventory", "I"}
         if player_input in positive_answers:
             return "Yes"
         elif player_input in negative_answers:
             return "No"
         elif player_input in save_answers:
             return "Save"
+        elif player_input in inventory_answers:
+            return "Inventory"
 
 
 
