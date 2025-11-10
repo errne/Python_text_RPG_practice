@@ -2,7 +2,7 @@ import random
 
 
 class RandomEvent:
-    greetings = ["Hello, there", "Greetings, traveler", "Good day, adventurer"]
+    greetings = ["Hello, there", "Greetings, traveler", "Good day, adventurer", "Morning, dear Sir"]
 
     def __init__(self, seed, player):
         self.seed = seed
